@@ -1,5 +1,7 @@
 # Assignment 1
 
+[![Buffer CI](https://github.com/TintuJos/Buffer_Assignment/actions/workflows/buffer.yml/badge.svg)](https://github.com/TintuJos/Buffer_Assignment/actions/workflows/buffer.yml)
+
 In this assignment you are supposed to practice CI in order to develop a module
 which has two functions to insert and extract data with a given length in bits and
 a given start position to/from a buffer.
