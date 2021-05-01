@@ -1,6 +1,5 @@
 #include "unity.h"
 #include "buffer.h"
-#include <stdio.h>
 #define BUFF_SIZE 30
 
 uint8_t buf[BUFF_SIZE] = {
@@ -37,6 +36,18 @@ void test_buffer_functions(void)
     TEST_ASSERT_EQUAL_UINT64(235, buffer_extract(buf, 10, 8));
 }
 
+//Testing buffer overwriting
+void test_buffer_overwriting(void)
+{
+    buffer_insert(buf, 55, 9, 215);
+    buffer_insert(buf, 60, 10, 188);
+    TEST_ASSERT_EQUAL_UINT64(188, buffer_extract(buf, 60, 10));
+
+    buffer_insert(buf, 65, 12, 315);
+    buffer_insert(buf, 65, 6, 55);
+    TEST_ASSERT_EQUAL_UINT64(55, buffer_extract(buf, 65, 6));
+}
+
 // Testing 64 bits
 void test_buffer_64bits(void)
 {
@@ -52,6 +63,6 @@ int main(void)
     RUN_TEST(test_buffer_functions);
     RUN_TEST(test_buffer_64bits);
     RUN_TEST(test_buffer_index);
-
+    RUN_TEST(test_buffer_overwriting);
     return UNITY_END();
 }
