@@ -12,6 +12,7 @@ void buffer_insert(uint8_t *buffer, uint8_t start, uint8_t length, uint64_t valu
 
     while (length)
     {
+        // Find start, end, position and value for a byte in the buffer
         if ((NUM_BITS - position) < length)
         {
             end_bit = NUM_BITS - 1;
@@ -58,6 +59,7 @@ uint64_t buffer_extract(uint8_t *buffer, uint8_t start, uint8_t length)
 
     while (remlen)
     {
+        // Find start, end, position and value for a byte in the buffer
         if ((NUM_BITS - position) < remlen)
         {
             extract_len = NUM_BITS - position;
@@ -69,7 +71,6 @@ uint64_t buffer_extract(uint8_t *buffer, uint8_t start, uint8_t length)
         else
         {
             extract_len = remlen;
-
             shift = length - remlen;
             tmp = (((1 << extract_len) - 1) & (buffer[index] >> position));
             remlen = 0;
